@@ -15,10 +15,10 @@ SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly', 'https://ww
 def get_gdrive_service():
     credentials = None
     
-    if os.path.exists('token.pickle'):
-        print("Loading credentials from file...")
-        with open('token.pickle', 'rb') as token:
-            credentials = pickle.load(token)
+    # if os.path.exists('token.pickle'):
+    #     print("Loading credentials from file...")
+    #     with open('token.pickle', 'rb') as token:
+    #         credentials = pickle.load(token)
     
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
@@ -31,9 +31,9 @@ def get_gdrive_service():
             flow.run_local_server(port=8080, prompt='consent', authorization_prompt_message='')
             credentials = flow.credentials
             
-            with open('token.pickle', 'wb') as f:
-                print("Saving credentials for future use...")
-                pickle.dump(credentials, f)
+            # with open('token.pickle', 'wb') as f:
+            #     print("Saving credentials for future use...")
+            #     pickle.dump(credentials, f)
         
     #print(credentials.to_json())
     
