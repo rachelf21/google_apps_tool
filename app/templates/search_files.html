@@ -1,19 +1,36 @@
 {% extends "base.html" %} {% block content %}
+<style>
+    .checkbox-1x {
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+      }
+</style>
+
+<script>
+  $(function () { 
+      $("#content").load("/progress"); 
+  });
+</script>
+
 <script src="/static/js/my_scripts.js"></script>
 <div name="list_files">
-  <h2 class="mt-4 mb-2">Found {{results|length}} files</h2>
+  <h2 class="mt-4 mb-2">Found {{results|length}} {{category}}</h2>
+
+
   <div class="table-responsive">
     <table id="myTable" class="table w-auto table-striped table-hover table-bordered table-responsive" style="border: 0px red solid">
       <thead>
-        <th>Parents</th>
+        <th>Containing Folder</th>
         <th>Name</th>
         <th>Type</th>
-        <th>Date Modified</th>
+        <th>Last Modified</th>
+        <th>Download</th>
+        <th>Copy</th>
       </thead>
       <tbody>
         {%for n in range(results | length)%}
         <tr>
-          <td class="text-wrap" style="max-width: 340px; word-wrap: break-word">{{results[n].parents}}</td>
+          <td class="text-wrap" style="max-width: 340px; word-wrap: break-word">{{results[n].containing_folder}}</td>
           <td class="text-wrap" style="max-width: 340px; word-wrap: break-word"><a target="_blank" style="color:black" href="{{results[n].webViewLink}}">{{results[n].name}} </a></td>
           <td class="text-wrap" style="max-width: 340px; word-wrap: break-word">
             <script>
@@ -22,11 +39,12 @@
           </td>
           <td class="text-nowrap">
             <script>
-              var date = "{{results[n].modifiedByMeTime}}";
+              var date = "{{results[n].modifiedTime}}";
               document.write(convert_date(date));
             </script>
           </td>
-        </tr>
+          <td class="text-center"> <input id="{{results[n].id}}" type="checkbox" class="checkbox-1x mr-4" onclick='download("{{results[n].id}}", "{{results[n].name}}","{{results[n].mimeType}}")' /></td>
+        <td class="text-center"><a href="/copy_file/{{results[n].id}}/{{results[n].name}}" onclick="return confirm('You are about to copy {{results[n].name}}. Continue?')">Copy</a></td></tr>
         {%endfor%}
       </tbody>
     </table>

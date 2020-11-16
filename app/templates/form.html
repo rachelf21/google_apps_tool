@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="form_display" style="max-width: 600px">
+  <form action="#" method="post" name="form" autocomplete="on">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Select Range of Dates for Google {{mimeType}}</legend>
+
+      <div class="form-group form-row">
+        <div class="row no-gutters" style="border: 0px solid red; display: flex; align-content: space-between">
+          <div style="align-content: flex-end">Start</div>
+          <div class="col ml-1 mr-2">{{ form.date_start(class="form-control form-control-md mb-2") }}</div>
+
+          <div style="align-content: flex-end">End</div>
+          <div class="col ml-1">{{ form.date_end(class="form-control form-control-md mb-2") }}</div>
+
+          <div class="col-xs-3">{{ form.btnSubmit(class="btn btn-primary btn-md form-control-md ml-2") }}</div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+{% endblock %}

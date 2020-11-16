@@ -17,7 +17,9 @@
         </td>
         <td class="text-wrap" style="max-width: 340px; word-wrap: break-word">
           <script>
-            document.write("{{results[n].mimeType}}".replace("application/vnd.google-apps.", ""));
+            var mime_type = "{{results[n].mimeType}}".replace("application/vnd.google-apps.", "");
+            mime_type = mime_type.replace("application/vnd.openxmlformats-", "");
+            document.write(mime_type);
           </script>
         </td>
         <td class="text-nowrap">

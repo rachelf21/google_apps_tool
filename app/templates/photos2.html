@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<style>
+    .checkbox-1x {
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+      }
+</style>
+<script src="/static/js/my_scripts.js"></script>
+<div name="list_files">
+  <h2 class="mt-4 mb-2">Retrieving {{media_files|length}} Photos</h2>
+  <input type = "checkbox" onclick="toggle(this)" class="checkbox-1x mr-2"> Select All <br>
+  <a href='#' role="button" class="btn btn-secondary mb-3" onclick="download_selected()">Download Selected</a>
+    <div class="container" style="border: 0px red solid ">
+
+      
+        {%for n in range(media_files | length)%}
+    
+          <td style="display: inline-block; vertical-align:top"><img src = "{{media_files[n]['baseUrl']}}=w200-h200">
+            <div name="photo_details">
+          <div class="text-wrap" ><a name="filenames" id="{{media_files[n]['filename']}}" target="_blank" style="color:black" href="{{media_files[n]['productUrl']}}">{{media_files[n]['filename']}} </a></div>
+          <div class="text-nowrap">
+            <script>
+              var date = "{{media_files[n]['mediaMetadata']['creationTime']}}";
+              document.write(convert_date(date));
+            </script>
+          </div>
+          <!--td class="text-center"> <input name="download_checkbox" id="{{media_files[n]['baseUrl']}}" type="checkbox" class="checkbox-1x mr-4" onclick='download_photo("{{media_files[n]['baseUrl']}}","{{media_files[n]['filename']}}")' /></td-->
+
+          <div> <input name="download_checkbox" id="{{media_files[n]['baseUrl']}}" type="checkbox" class="checkbox-1x mr-2" />Download</div> </div></td>
+        {%endfor%}
+
+    </div>
+
+  </div>
+  {% endblock %}
+</div>

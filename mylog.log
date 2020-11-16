@@ -1,0 +1,7 @@
+2020-11-15 17:44:39,056 INFO     this should to write to the log file
+2020-11-15 17:44:40,303 INFO     this should to write to the log file
+2020-11-15 17:44:40,350 WARNING   * Debugger is active!
+2020-11-15 17:44:40,360 INFO      * Debugger PIN: 215-361-142
+2020-11-15 17:44:40,406 INFO      * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-11-15 18:12:55,778 INFO      * Detected change in 'C:\\Users\\Rachel\\OneDrive\\Brooklyn College\\5-Bklyn College Fall 2020\\Google Tools\\app\\routes.py', reloading
+2020-11-15 18:12:56,020 INFO      * Detected change in 'C:\\Users\\Rachel\\OneDrive\\Brooklyn College\\5-Bklyn College Fall 2020\\Google Tools\\app\\photos\\routes.py', reloading

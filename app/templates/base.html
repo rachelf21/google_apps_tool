@@ -27,6 +27,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/simple-sidebar.css" rel="stylesheet" />
+    <link href="/static/css/mystyles.css" rel="stylesheet" />
 
     <!-- <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -43,10 +44,22 @@
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Google Drive Tools</div>
         <div class="list-group list-group-flush">
-          <a href="{{ url_for('list_drive_files') }}" class="list-group-item list-group-item-action bg-light">List 500 files</a>
-          <a href="{{ url_for('search_drive_files') }}" class="list-group-item list-group-item-action bg-light">Find file</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Download files</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">File statistics</a>
+          <a href="{{ url_for('list_drive_files') }}" class="list-group-item list-group-item-action bg-light">Recent 500 files</a>
+          <a href="{{ url_for('search_drive_files') }}" class="list-group-item list-group-item-action bg-light">Find files within 6 months</a>
+          <a href="/display_form/document" class="list-group-item list-group-item-action bg-light">My Google Docs</a>
+          <a href="/display_form/drawing" class="list-group-item list-group-item-action bg-light">My Google Drawings</a>
+          <a href="/display_form/folder" class="list-group-item list-group-item-action bg-light">My Google Folders</a>
+          <a href="/display_form/form" class="list-group-item list-group-item-action bg-light">My Google Forms</a>
+          <a href="/display_form/map" class="list-group-item list-group-item-action bg-light">My Google Maps</a>          
+          <a href="/display_form_photos"" class="list-group-item list-group-item-action bg-light">My Google Photos</a>
+          <a href="/display_form/script" class="list-group-item list-group-item-action bg-light">My Google Scripts</a>
+          <a href="/display_form/spreadsheet" class="list-group-item list-group-item-action bg-light">My Google Sheets</a>
+          <a href="/display_form/site" class="list-group-item list-group-item-action bg-light">My Google Sites</a>
+          <a href="/display_form/slide" class="list-group-item list-group-item-action bg-light">My Google Slides</a>
+          <a href="/display_form/pdf" class="list-group-item list-group-item-action bg-light">My PDF Files</a>
+          <a href="/display_form/other" class="list-group-item list-group-item-action bg-light">My Other Files</a>
+
+
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -98,12 +111,17 @@
             </ul>
           </div>
         </nav>
-
+        <div class="container" name="messages">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+          <div  class="text-center alert alert-{{ category }}" alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</div>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
         <div class="container-fluid">
-          <h1 class="mt-4 mb-2">Google Drive Tools</h1>
-          <p>
-            Click on the button on the left to view a list of all your Google Drive files, search for files by date or name, download files,
-            or get statistics about your Google Drive files.
+          <div name="heading" class="mt-2" style="display:flex; align-items:flex-end" >
+          <div><img src="/static/img/logo.png" style="width:60px"></div> <div class="h1 ml-2 mt-4 mb-2" >Google Drive Tools</div> </div>
+          <p class="mt-2">
+            Retrieve your files from Google Drive or Google Photos.
+            <hr>
           </p>
 
           {% block content %} {% endblock %}
